@@ -9,6 +9,7 @@ class Home extends StatefulWidget {
 
 class AppLayout extends State<Home> {
   Future futureAlbum;
+  Future futureAlbum2;
 
   @override
   void initState() {
@@ -20,6 +21,7 @@ class AppLayout extends State<Home> {
     Timer.periodic(Duration(milliseconds: 5000), (timer) {
       setState(() {
         futureAlbum = fetchAlbum();
+        futureAlbum2= createAlbum();
       });
     });
   }
@@ -27,7 +29,7 @@ class AppLayout extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: futureAlbum,
+      future: futureAlbum2,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           return Column(
