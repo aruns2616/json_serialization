@@ -2,27 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class Society {
-  List<Flats> flats;
-  List<Payments> payments;
-
-  Society({this.flats, this.payments});
-
-  Society.fromJson(Map<String, dynamic> json) {
-    if (json['flats'] != null) {
-      flats = new List<Flats>();
-      json['flats'].forEach((v) {
-        flats.add(new Flats.fromJson(v));
-      });
-    }
-    if (json['payments'] != null) {
-      payments = new List<Payments>();
-      json['payments'].forEach((v) {
-        payments.add(new Payments.fromJson(v));
-      });
-    }
-  }
-}
 
 class Flats {
   String flat;
@@ -36,20 +15,8 @@ class Flats {
   }
 }
 
-class Payments {
-  String flat;
-  String status;
 
-  Payments({this.flat, this.status});
-
-  Payments.fromJson(Map<String, dynamic> json) {
-    flat = json['flat'];
-    status = json['status'];
-  }
-
-}
-
-Future<Society> fetchAlbum() async {
+Future<Flats> fetchAlbum() async {
 
   Map<String, String> headers = {
     'Content-Type': 'application/json;charset=UTF-8',
@@ -57,13 +24,13 @@ Future<Society> fetchAlbum() async {
   };
 
   http.Response response = await http.get(
-    'https://json-serialization.firebaseio.com/.json',
+    'https://json-serialization.firebaseio.com/flats/.json',
   );
   if (response.statusCode == 200 ) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
     final jsonresponse = json.decode(response.body);
-    return Society.fromJson(jsonresponse);
+    return Flats.fromJson(jsonresponse);
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -71,9 +38,9 @@ Future<Society> fetchAlbum() async {
   }
 }
 
-Future<Flats> createAlbum() async {
+/*Future<Flats> createAlbum() async {
   final http.Response response = await http.post(
-    'https://json-serialization.firebaseio.com/flats/3.json',
+    'https://json-serialization.firebaseio.com/flats/.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -93,3 +60,4 @@ Future<Flats> createAlbum() async {
     throw Exception('Failed to load album');
   }
 }
+*/

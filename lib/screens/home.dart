@@ -21,7 +21,7 @@ class AppLayout extends State<Home> {
     Timer.periodic(Duration(milliseconds: 5000), (timer) {
       setState(() {
         futureAlbum = fetchAlbum();
-        futureAlbum2= createAlbum();
+        //futureAlbum2= createAlbum();
       });
     });
   }
@@ -29,35 +29,24 @@ class AppLayout extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: futureAlbum2,
+      future: futureAlbum,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           return Column(
             children: <Widget>[
               Expanded(
                 child: ListView.separated(
-                  itemCount: 3,
+                  itemCount: 1,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       leading: Icon(Icons.person_outline, color: Colors.amber),
-                      title: Text(snapshot.data.flats[index].flat + snapshot.data.flats[index].owner),
+                      title: Text(snapshot.data.flat + snapshot.data.owner),
                     );
                   },
                   separatorBuilder: (context, index) {
                     return Divider();
                   },
                 ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                    itemCount: 3,
-                    itemBuilder: (BuildContext context, index) {
-                      return ListTile(
-                        leading: Icon(Icons.satellite,
-                            color: Colors.lightGreenAccent),
-                        title: Text(snapshot.data.payments[index].flat),
-                      );
-                    }),
               ),
             ],
           );
