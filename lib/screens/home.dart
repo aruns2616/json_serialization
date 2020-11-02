@@ -21,7 +21,6 @@ class AppLayout extends State<Home> {
     Timer.periodic(Duration(milliseconds: 5000), (timer) {
       setState(() {
         futureAlbum = fetchAlbum();
-        //futureAlbum2= createAlbum();
       });
     });
   }
@@ -40,7 +39,7 @@ class AppLayout extends State<Home> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       leading: Icon(Icons.person_outline, color: Colors.amber),
-                      title: Text(snapshot.data.flat + snapshot.data.owner),
+                      title: Text(snapshot.data.toString()),
                     );
                   },
                   separatorBuilder: (context, index) {

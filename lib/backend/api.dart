@@ -10,8 +10,9 @@ class Flats {
   Flats({this.flat, this.owner});
 
   Flats.fromJson(Map<String, dynamic> json) {
-    flat = json['flat'];
-    owner = json['owner'];
+    json.forEach((k,v)=>flat=v['flat']);
+   // flat = json['flat'];
+    //owner = json['owner'];
   }
 }
 
@@ -38,7 +39,7 @@ Future<Flats> fetchAlbum() async {
   }
 }
 
-/*Future<Flats> createAlbum() async {
+Future<Flats> createAlbum() async {
   final http.Response response = await http.post(
     'https://json-serialization.firebaseio.com/flats/.json',
     headers: <String, String>{
@@ -60,4 +61,4 @@ Future<Flats> fetchAlbum() async {
     throw Exception('Failed to load album');
   }
 }
-*/
+
