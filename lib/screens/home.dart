@@ -31,15 +31,16 @@ class AppLayout extends State<Home> {
       future: futureAlbum,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
+          int index=4;
           return Column(
             children: <Widget>[
               Expanded(
                 child: ListView.separated(
-                  itemCount: 1,
+                  itemCount: index,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       leading: Icon(Icons.person_outline, color: Colors.amber),
-                      title: Text(snapshot.data.toString()),
+                      title: Text(snapshot.data.flat[index]+' '+ snapshot.data.owner[index]),
                     );
                   },
                   separatorBuilder: (context, index) {

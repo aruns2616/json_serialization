@@ -4,13 +4,14 @@ import 'package:http/http.dart' as http;
 
 
 class Flats {
-  String flat;
-  String owner;
-
+  var flat = new List(5);
+  var owner = new List(5);
   Flats({this.flat, this.owner});
 
   Flats.fromJson(Map<String, dynamic> json) {
-    json.forEach((k,v)=>flat=v['flat']);
+    int i=0; int j=0;
+    json.forEach((k,v)=>flat[i++]=v['flat']);
+    json.forEach((k,v)=>owner[j++]=v['owner']);
    // flat = json['flat'];
     //owner = json['owner'];
   }
