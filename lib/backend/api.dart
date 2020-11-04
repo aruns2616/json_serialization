@@ -1,17 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 
 class Flats {
-  var flat = new List(5);
-  var owner = new List(5);
+  List<String> flat = new List(5);
+  List<String> owner = new List(5);
   Flats({this.flat, this.owner});
 
   Flats.fromJson(Map<String, dynamic> json) {
     int i=0; int j=0;
     json.forEach((k,v)=>flat[i++]=v['flat']);
     json.forEach((k,v)=>owner[j++]=v['owner']);
+    //flatCount=flat.length;
    // flat = json['flat'];
     //owner = json['owner'];
   }
@@ -40,15 +42,15 @@ Future<Flats> fetchAlbum() async {
   }
 }
 
-Future<Flats> createAlbum() async {
+Future<Flats> createAlbum(TextEditingController flat,TextEditingController owner) async {
   final http.Response response = await http.post(
     'https://json-serialization.firebaseio.com/flats/.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-               'flat' : 'A101',
-               'owner' : 'KK Singh'
+               'flat' : flat.text,
+               'owner' : owner.text,
              }),
 
   );

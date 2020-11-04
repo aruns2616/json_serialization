@@ -1,12 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:json_serialization/screens/home.dart';
+import 'package:json_serialization/backend/api.dart';
+import 'package:json_serialization/screens/newPost.dart';
 
 void main() {
   runApp(JsonSer());
 }
 
 class JsonSer extends StatelessWidget {
+  Future futureAlbum;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,44 +20,7 @@ class JsonSer extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       title: "JSON Serialization",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "JSON Serialization",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          backgroundColor: Colors.orangeAccent,
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.orangeAccent,
-                ),
-                child: Text(
-                  "JSON Serialization",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.info),
-                title: Text('Developer information'),
-                onTap: () {
-                  //launchURL();
-                },
-              ),
-            ],
-          ),
-        ),
-        body: Home(),
-      ),
+      home: Home(),
     );
   }
 }
