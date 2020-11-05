@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 
 class AppLayout extends State<Home> {
   Future futureAlbum;
-  int index=5;
+  int index=0;
 
   @override
   void initState() {
@@ -82,7 +82,7 @@ class AppLayout extends State<Home> {
               children: <Widget>[
                 Expanded(
                   child: ListView.separated(
-                    itemCount: index,
+                    itemCount: index=snapshot.data.count,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         leading:

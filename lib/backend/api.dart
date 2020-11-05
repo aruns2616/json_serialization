@@ -5,12 +5,16 @@ import 'package:http/http.dart' as http;
 
 
 class Flats {
-  List<String> flat = new List(5);
-  List<String> owner = new List(5);
+  List<String> flat;
+  List<String> owner;
+  int count=0;
   Flats({this.flat, this.owner});
 
   Flats.fromJson(Map<String, dynamic> json) {
     int i=0; int j=0;
+    flat=new List<String>(json.length);
+    owner=new List<String>(json.length);
+    count=json.length;
     json.forEach((k,v)=>flat[i++]=v['flat']);
     json.forEach((k,v)=>owner[j++]=v['owner']);
     //flatCount=flat.length;
