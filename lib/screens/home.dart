@@ -45,8 +45,8 @@ class AppLayout extends State<Home> {
             MaterialPageRoute(builder: (context) => NewPost()),
           );
         },
-        child: Icon(Icons.navigation),
-        backgroundColor: Colors.green,
+        child: Icon(Icons.add),
+        backgroundColor: Colors.orangeAccent,
       ),
       drawer: Drawer(
         child: ListView(
